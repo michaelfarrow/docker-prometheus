@@ -1,12 +1,14 @@
 #!/bin/sh
 
 FORMATTED_DNS_SD_NAMES=""
+SCRAPE_INTERVAL="30s"
 
 for target in $(echo $DNS_SD_NAMES | tr ',' '\n'); do 
   FORMATTED_DNS_SD_NAMES="$FORMATTED_DNS_SD_NAMES    - '${target}'\n"
 done
 
 sed -i "s/%dns_sd_names%/$FORMATTED_DNS_SD_NAMES/" /etc/prometheus/prometheus.yml
+sed -i "s/%scape_interval%/$SCRAPE_INTERVAL/" /etc/prometheus/prometheus.yml
 
 /bin/prometheus \
   -config.file=/etc/prometheus/prometheus.yml \
