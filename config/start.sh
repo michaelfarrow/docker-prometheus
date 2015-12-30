@@ -1,7 +1,6 @@
 #!/bin/sh
 
 FORMATTED_DNS_SD_NAMES=""
-SCRAPE_INTERVAL="30s"
 
 for target in $(echo $DNS_SD_NAMES | tr ',' '\n'); do 
   FORMATTED_DNS_SD_NAMES="$FORMATTED_DNS_SD_NAMES    - '${target}'\n"
